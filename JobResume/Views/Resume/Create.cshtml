@@ -1,0 +1,538 @@
+﻿
+@{
+    ViewBag.Title = "Create Resume";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="my-3">@ViewBag.Title</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Step 1</h5>
+
+        <form action="/Resume/Basicinfo" method="post">
+
+            <div class="form-row">
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="fname">
+                        <span class="font-weight-bold text-danger">*</span>
+                        First Name:
+                    </label>
+                    <input required type="text" name="fname" id="fname" class="form-control" placeholder="first name" />
+                </div>
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="mname">
+                        Middle Name:
+                    </label>
+                    <input type="text" name="mname" id="mname" class="form-control" placeholder="middle name" />
+                </div>
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="lname">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Last Name:
+                    </label>
+                    <input required type="text" name="lname" id="lname" class="form-control" placeholder="last name" />
+                </div>
+                <div class="form-group col-sm-12 col-md-4">
+                    <label>Image:</label>
+                    <div class="custom-file">
+                        <input type="file" name="image" class="custom-file-input" id="imageFile" accept="image/*" aria-describedby="imageFile">
+                        <label class="custom-file-label" for="imageFile">Choose Image</label>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="dob">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Date of Birth:
+                    </label>
+                    <input required type="date" name="dob" id="dob" class="form-control" placeholder="date of birth" />
+                </div>
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="gender">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Gender:
+                    </label>
+                    <select required class="form-control" id="gender" name="gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="email">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Email:
+                    </label>
+                    <input required type="email" name="email" id="email" class="form-control" placeholder="email" />
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="ph1">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Phone Number 1:
+                    </label>
+                    <input required type="tel" name="ph1" id="ph1" class="form-control" pattern="[+][0-9]{2} [0-9]{3} [0-9]{7}" placeholder="+92 123 4567890" />
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="ph2">
+                        Phone Number 2:
+                    </label>
+                    <input type="tel" name="ph2" id="ph2" class="form-control" pattern="[+][0-9]{2} [0-9]{3} [0-9]{7}" placeholder="+92 123 4567890" />
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="address">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Address:
+                    </label>
+                    <input required type="text" name="address" id="address" class="form-control" placeholder="address" />
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4" id="city1">
+                    <label for="city">
+                        <span class="font-weight-bold text-danger">*</span>
+                        City:
+                    </label>
+                    <select required class="form-control" id="city" name="city">
+                        @foreach (var city in ViewBag.Cities)
+                        {
+                        <option>@city.name</option>
+                        }
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4" id="city2">
+                    <label for="newcity">
+                        <span class="font-weight-bold text-danger">*</span>
+                        New city:
+                    </label>
+                    <div class="input-group">
+                        <input type="text" name="newcity" id="newcity" class="form-control" placeholder="new city" aria-describedby="addcity" />
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="addcity">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4" id="country1">
+                    <label for="country">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Country:
+                    </label>
+                    <select required class="form-control" id="country" name="country">
+                        @foreach (var country in ViewBag.Countaries)
+                        {
+                            <option>@country.name</option>
+                        }
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4" id="country2">
+                    <label for="newcountry">
+                        <span class="font-weight-bold text-danger">*</span>
+                        New country:
+                    </label>
+                    <div class="input-group">
+                        <input type="text" name="newcountry" id="newcountry" class="form-control" placeholder="new country" aria-describedby="addcountry" />
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="addcountry">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="objective">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Objective:
+                    </label>
+                    <textarea required name="objective" class="form-control" id="objective" rows="4" placeholder="objective"></textarea>
+                </div>
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="depoi">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Department of Interest:
+                    </label>
+                    <select required class="form-control" id="depoi" name="depoi">
+                        <option>Management</option>
+                        <option>HR</option>
+                        <option>Development</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="desoi">
+                        Designations of Interest:
+                    </label>
+                    <select multiple class="form-control" id="desoi" name="desoi">
+                        <option>Engineer</option>
+                        <option>Senior Engineer</option>
+                        <option>Manager</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="joiningdate">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Tentative Joining Date:
+                    </label>
+                    <input required type="date" name="joiningdate" id="joiningdate" class="form-control" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-sm-12 col-md-4" id="lastdegree1">
+                    <label for="lastdegree">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Name of Last Degree:
+                    </label>
+                    <select required class="form-control" id="lastdegree" name="lastdegree">
+                        <option>Matriculation</option>
+                        <option>Intermediate</option>
+                        <option>Graduate</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group col-sm-12 col-md-4" id="lastdegree2">
+                    <label for="newlastdegree">
+                        <span class="font-weight-bold text-danger">*</span>
+                        New last degree:
+                    </label>
+                    <div class="input-group">
+                        <input type="text" name="newlastdegree" id="newlastdegree" class="form-control" placeholder="new last degree" aria-describedby="addlastdegree" />
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="addlastdegree">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group col-sm-12 col-md-4" id="lastinstitute1">
+                    <label for="lastinstitute">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Institute Name for the Last Degree :
+                    </label>
+                    <select required class="form-control" id="lastinstitute" name="lastinstitute">
+                        <option>Comsats</option>
+                        <option>FAST NUCES</option>
+                        <option>Punjab University</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group col-sm-12 col-md-4" id="lastinstitute2">
+                    <label for="newlastinstitute">
+                        <span class="font-weight-bold text-danger">*</span>
+                        New Last Institute:
+                    </label>
+                    <div class="input-group">
+                        <input type="text" name="newlastinstitute" id="newlastinstitute" class="form-control" placeholder="new last institute" aria-describedby="addlastinstitute" />
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="addlastinstitute">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="lastperform">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Performance in Last Degree:
+                    </label>
+                    <input required type="text" name="lastperform" id="lastperform" class="form-control" placeholder="Marks/Percentage/Grade/CGPA" />
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4" id="scndlastdegree1">
+                    <label for="scndlastdegree">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Name of 2nd Last Degree:
+                    </label>
+                    <select required class="form-control" id="scndlastdegree" name="scndlastdegree">
+                        <option>Matriculation</option>
+                        <option>Intermediate</option>
+                        <option>Graduate</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4" id="scndlastdegree2">
+                    <label for="newscndlastdegree">
+                        <span class="font-weight-bold text-danger">*</span>
+                        New 2nd Last Degree:
+                    </label>
+                    <div class="input-group">
+                        <input type="text" name="newscndlastdegree" id="newscndlastdegree" class="form-control" placeholder="new 2nd last degree" aria-describedby="addscndlastdegree" />
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="addscndlastdegree">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group col-sm-12 col-md-4" id="scndlastinstitute1">
+                    <label for="scndlastinstitute">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Institute Name for the 2nd Last Degree :
+                    </label>
+                    <select required class="form-control" id="scndlastinstitute" name="scndlastinstitute">
+                        <option>Comsats</option>
+                        <option>FAST NUCES</option>
+                        <option>Punjab University</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4" id="scndlastinstitute2">
+                    <label for="newscndlastinstitute">
+                        <span class="font-weight-bold text-danger">*</span>
+                        New 2nd Last Institute:
+                    </label>
+                    <div class="input-group">
+                        <input type="text" name="newscndlastinstitute" id="newscndlastinstitute" class="form-control" placeholder="new 2nd last institute" aria-describedby="addscndlastinstitute" />
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="addscndlastinstitute">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="scndlastperform">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Performance in 2nd Last Degree:
+                    </label>
+                    <input required type="text" name="scndlastperform" id="scndlastperform" class="form-control" placeholder="Marks/Percentage/Grade/CGPA" />
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="addqualification">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Additional Qualification:
+                    </label>
+                    <input required type="text" name="addqualification" id="addqualification" class="form-control" placeholder="additional qualification" />
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Save" />
+
+        </form>
+
+    </div>
+</div>
+
+<div class="card my-4">
+    <div class="card-body">
+        <h5 class="card-title">Step 2</h5>
+
+        <form action="/Resume/Expinfo" method="post">
+            <div class="form-row">
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="skills">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Skills:
+                    </label>
+                    <input required type="text" name="skills" id="skills" class="form-control" placeholder="skills" />
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="minsalary">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Minimum Acceptable Salary:
+                    </label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Rs.</span>
+                        </div>
+                        <input required type="number" name="minsalary" id="minsalary" class="form-control" placeholder="minimum acceptable salary" aria-describedby="basic-addon1" />
+                    </div>
+                </div>
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="expsum">
+                        Experience Summary:
+                    </label>
+                    <textarea name="expsum" id="expsum" class="form-control" placeholder="experience summary" rows="4"></textarea>
+                </div>
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="expyrs">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Experience Years:
+                    </label>
+                    <select required class="form-control" id="expyrs" name="expyrs">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5+</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="currentemp">
+                        Name of Current Employer:
+                    </label>
+                    <input name="currentemp" id="currentemp" class="form-control" placeholder="name of current employer" />
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="currentdes">
+                        Current Designation:
+                    </label>
+                    <input name="currentdes" id="currentdes" class="form-control" placeholder="current designation" />
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="exporg">
+                        Experience in Current Organization:
+                    </label>
+                    <select class="form-control" id="exporg" name="exporg">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5+</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="respcjob">
+                        Responsibilities at Current Job:
+                    </label>
+                    <input name="respcjob" id="respcjob" class="form-control" placeholder="responsibilities at current job" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="prevemp">
+                        Name of Previous Employer:
+                    </label>
+                    <input name="prevemp" id="prevemp" class="form-control" placeholder="name of previous employer" />
+                </div>
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="prevdes">
+                        Previous Designation:
+                    </label>
+                    <input name="prevdes" id="prevdes" class="form-control" placeholder="previous designation" />
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="prevexporg">
+                        Experience in Previous Organization :
+                    </label>
+                    <select class="form-control" id="prevexporg" name="prevexporg">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5+</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="respprevjob">
+                        Responsibilities at Previous Job:
+                    </label>
+                    <input name="respprevjob" id="respprevjob" class="form-control" placeholder="responsibilities at previous job" />
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="dolj">
+                        Date of Leaving Job:
+                    </label>
+                    <input type="date" name="dolj" id="dolj" class="form-control" placeholder="date of leaving job" />
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Save" />
+        </form>
+    </div>
+</div>
+
+<div class="card my-4">
+    <div class="card-body">
+        <h5 class="card-title">Step 3</h5>
+
+        <form action="/Create/Extrainfo" method="post">
+            <div class="form-row">
+                <div class="form-group col-sm-12 col-md-6">
+                    <label for="extraact">
+                        Extracurricular activities:
+                    </label>
+                    <input name="extraact" id="extraact" class="form-control" placeholder="extra activities (comma separated)" />
+                </div>
+                <div class="form-group col-sm-12 col-md-6">
+                    <label for="othrint">
+                        Other Interests:
+                    </label>
+                    <input name="othrint" id="othrint" class="form-control" placeholder="other interests (comma separated)" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="refperson1">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Name of Reference Person 1:
+                    </label>
+                    <input required name="refperson1" id="refperson1" class="form-control" placeholder="name of reference person 1" />
+                </div>
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="affperson1">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Affiliation of Reference Person 1:
+                    </label>
+                    <input required name="affperson1" id="affperson1" class="form-control" placeholder="affiliation of reference person 1" />
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="phref1">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Contact Number of Reference Person 1:
+                    </label>
+                    <input required type="tel" name="phref1" id="phref1" class="form-control" pattern="[+][0-9]{2} [0-9]{3} [0-9]{7}" placeholder="+92 123 4567890" />
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="refemail1">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Email Address of Reference Person 1:
+                    </label>
+                    <input required type="email" name="refemail1" id="refemail1" class="form-control" placeholder="email of reference person 1" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="refperson2">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Name of Reference Person 2:
+                    </label>
+                    <input required type="text" name="refperson2" id="refperson2" class="form-control" placeholder="name of reference person 2" />
+                </div>
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="affperson2">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Affiliation of Reference Person 2:
+                    </label>
+                    <input required type="text" name="affperson2" id="affperson2" class="form-control" placeholder="affiliation of reference person 2" />
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="phref2">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Contact Number of Reference Person 2:
+                    </label>
+                    <input required type="tel" name="phref2" id="phref2" class="form-control" pattern="[+][0-9]{2} [0-9]{3} [0-9]{7}" placeholder="+92 123 4567890" />
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="refemail2">
+                        <span class="font-weight-bold text-danger">*</span>
+                        Email Address of Reference Person 2:
+                    </label>
+                    <input required type="email" name="refemail2" id="refemail2" class="form-control" placeholder="email of reference person 2" />
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary"  value="Save" />
+        </form>
+    </div>
+</div>

@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Database1" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Database1ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Cities" Member="Cities">
+    <Type Name="City">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="City_JobResumeBasic" Member="JobResumeBasics" ThisKey="Id" OtherKey="city" Type="JobResumeBasic" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="lname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="User_JobResumeBasic" Member="JobResumeBasics" ThisKey="Id" OtherKey="userId" Type="JobResumeBasic" />
+      <Association Name="User_JobResumeExp" Member="JobResumeExps" ThisKey="Id" OtherKey="userId" Type="JobResumeExp" />
+      <Association Name="User_PreviousHistory" Member="PreviousHistories" ThisKey="Id" OtherKey="userid" Type="PreviousHistory" />
+      <Association Name="User_JobResumeExtra" Member="JobResumeExtras" ThisKey="Id" OtherKey="userId" Type="JobResumeExtra" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Countaries" Member="Countaries">
+    <Type Name="Countary">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Countary_JobResumeBasic" Member="JobResumeBasics" ThisKey="Id" OtherKey="country" Type="JobResumeBasic" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Degree" Member="Degrees">
+    <Type Name="Degree">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Degree_JobResumeBasic" Member="JobResumeBasics" ThisKey="Id" OtherKey="lastdegree" Type="JobResumeBasic" />
+      <Association Name="Degree_JobResumeBasic1" Member="JobResumeBasics1" ThisKey="Id" OtherKey="scndlastdegree" Type="JobResumeBasic" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Institutes" Member="Institutes">
+    <Type Name="Institute">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Institute_JobResumeBasic" Member="JobResumeBasics" ThisKey="Id" OtherKey="lastinstitute" Type="JobResumeBasic" />
+      <Association Name="Institute_JobResumeBasic1" Member="JobResumeBasics1" ThisKey="Id" OtherKey="scndlastinstitute" Type="JobResumeBasic" />
+    </Type>
+  </Table>
+  <Table Name="dbo.JobResumeBasic" Member="JobResumeBasics">
+    <Type Name="JobResumeBasic">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="mname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="image" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="dob" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="gender" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ph1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ph2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="city" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="country" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="objective" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="depofint" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="desofint" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="joiningdate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="lastdegree" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="lastinstitute" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="perflastdegree" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="scndlastdegree" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="scndlastinstitute" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="perfscndlastdegree" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="addqualification" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="userId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="City_JobResumeBasic" Member="City1" ThisKey="city" OtherKey="Id" Type="City" IsForeignKey="true" />
+      <Association Name="Countary_JobResumeBasic" Member="Countary" ThisKey="country" OtherKey="Id" Type="Countary" IsForeignKey="true" />
+      <Association Name="Degree_JobResumeBasic" Member="Degree" ThisKey="lastdegree" OtherKey="Id" Type="Degree" IsForeignKey="true" />
+      <Association Name="Institute_JobResumeBasic" Member="Institute" ThisKey="lastinstitute" OtherKey="Id" Type="Institute" IsForeignKey="true" />
+      <Association Name="Degree_JobResumeBasic1" Member="Degree1" ThisKey="scndlastdegree" OtherKey="Id" Type="Degree" IsForeignKey="true" />
+      <Association Name="Institute_JobResumeBasic1" Member="Institute1" ThisKey="scndlastinstitute" OtherKey="Id" Type="Institute" IsForeignKey="true" />
+      <Association Name="User_JobResumeBasic" Member="User" ThisKey="userId" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.JobResumeExp" Member="JobResumeExps">
+    <Type Name="JobResumeExp">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="skills" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="minsalary" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="expsummary" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="expyrs" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cemployer" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cdes" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="expcorg" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="rescjob" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="userId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_JobResumeExp" Member="User" ThisKey="userId" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PreviousHistory" Member="PreviousHistories">
+    <Type Name="PreviousHistory">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="pemployer" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="pdes" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="expporg" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="resppjob" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="dateofleaving" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="userid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_PreviousHistory" Member="User" ThisKey="userid" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Table]" Member="Tables">
+    <Type Name="Table">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.JobResumeExtra" Member="JobResumeExtras">
+    <Type Name="JobResumeExtra">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="extraactivities" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="otherinterests" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="namep1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="affp1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="php1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="emailp1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="namep2" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="affp2" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="php2" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="emailp2" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="userId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_JobResumeExtra" Member="User" ThisKey="userId" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -189,9 +189,10 @@
                         Name of Last Degree:
                     </label>
                     <select required class="form-control" id="lastdegree" name="lastdegree">
-                        <option>Matriculation</option>
-                        <option>Intermediate</option>
-                        <option>Graduate</option>
+                        @foreach (var degree in ViewBag.Degrees)
+                        {
+                            <option>@degree.name</option>
+                        }
                         <option>Other</option>
                     </select>
                 </div>
@@ -217,9 +218,10 @@
                         Institute Name for the Last Degree :
                     </label>
                     <select required class="form-control" id="lastinstitute" name="lastinstitute">
-                        <option>Comsats</option>
-                        <option>FAST NUCES</option>
-                        <option>Punjab University</option>
+                        @foreach (var institute in ViewBag.Institutes)
+                        {
+                            <option>@institute.name</option>
+                        }
                         <option>Other</option>
                     </select>
                 </div>
@@ -252,9 +254,10 @@
                         Name of 2nd Last Degree:
                     </label>
                     <select required class="form-control" id="scndlastdegree" name="scndlastdegree">
-                        <option>Matriculation</option>
-                        <option>Intermediate</option>
-                        <option>Graduate</option>
+                        @foreach (var degree in ViewBag.Degrees)
+                        {
+                            <option>@degree.name</option>
+                        }
                         <option>Other</option>
                     </select>
                 </div>
@@ -279,9 +282,10 @@
                         Institute Name for the 2nd Last Degree :
                     </label>
                     <select required class="form-control" id="scndlastinstitute" name="scndlastinstitute">
-                        <option>Comsats</option>
-                        <option>FAST NUCES</option>
-                        <option>Punjab University</option>
+                        @foreach (var institute in ViewBag.Institutes)
+                        {
+                            <option>@institute.name</option>
+                        }
                         <option>Other</option>
                     </select>
                 </div>

@@ -14,7 +14,7 @@ namespace JobResume.Controllers
         {
             getAllLists obj = new getAllLists();
             ViewBag.Cities = obj.getCities();
-            ViewBag.Countaries = obj.getDegrees();
+            ViewBag.Countaries = obj.getCountaries();
             ViewBag.Degrees = obj.getDegrees();
             ViewBag.Institutes = obj.getInstitutes();
 
@@ -60,7 +60,11 @@ namespace JobResume.Controllers
 
             BasicInfo obj = new BasicInfo();
             obj.addBasicInfo(fname, lname, mname, image, dob, gender, email, ph1, ph2, address, city, country, objective, depofint, desofint, joiningdate, lastdegree, lastinstitute, lastperform, scndlastdegree, scndlastinstitute, scndlastperform, addqualification, 1);
-
+            getAllLists obj1 = new getAllLists();
+            ViewBag.Cities = obj1.getCities();
+            ViewBag.Countaries = obj1.getCountaries();
+            ViewBag.Degrees = obj1.getDegrees();
+            ViewBag.Institutes = obj1.getInstitutes();
             return View("Create");
         }
 
@@ -85,7 +89,11 @@ namespace JobResume.Controllers
 
             ExpInfo obj = new ExpInfo();
             obj.addExpInfo(skills, minsalary, expsum, expyrs, cemployer, cdes, expcorg, respcjob, 1, prevemp, prevdes, prevexporg, respprevjob, dolj);
-
+            getAllLists obj2 = new getAllLists();
+            ViewBag.Cities = obj2.getCities();
+            ViewBag.Countaries = obj2.getCountaries();
+            ViewBag.Degrees = obj2.getDegrees();
+            ViewBag.Institutes = obj2.getInstitutes();
             return View("Create");
         }
 
@@ -105,6 +113,11 @@ namespace JobResume.Controllers
 
             ExtraInfo obj = new ExtraInfo();
             obj.addExtraInfo(extraact, othrint, refperson1, affperson1, phref1, refemail1, refperson2, affperson2, phref2, refemail2,1);
+            getAllLists obj3 = new getAllLists();
+            ViewBag.Cities = obj3.getCities();
+            ViewBag.Countaries = obj3.getCountaries();
+            ViewBag.Degrees = obj3.getDegrees();
+            ViewBag.Institutes = obj3.getInstitutes();
             return View("Create");
         }
     }

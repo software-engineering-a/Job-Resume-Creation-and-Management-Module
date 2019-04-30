@@ -11,7 +11,7 @@
         <h5 class="card-title">Step 1</h5>
         @if (ViewBag.isBasicInfoExist == false)
         {
-            <form action="/Resume/Basicinfo" method="post">
+            <form action="/Resume/CreateBasicinfo" method="post">
 
                 <div class="form-row">
 
@@ -339,7 +339,7 @@
         <h5 class="card-title">Step 2</h5>
         @if (ViewBag.isExpInfoExist == false)
         {
-            <form action="/Resume/Expinfo" method="post">
+            <form action="/Resume/CreateExpinfo" method="post">
                 <div class="form-row">
                     <div class="form-group col-sm-12 col-md-4">
                         <label for="skills">
@@ -474,7 +474,7 @@
         <h5 class="card-title">Step 3</h5>
         @if (ViewBag.isExtraInfoExist == false)
         {
-            <form action="/Resume/Extrainfo" method="post">
+            <form action="/Resume/CreateExtrainfo" method="post">
                 <div class="form-row">
                     <div class="form-group col-sm-12 col-md-6">
                         <label for="extraact">

@@ -14,7 +14,7 @@ namespace JobResume.Models
             var q = from x in db.Cities
                     where x.name == city
                     select x;
-            int cityid=0;
+            int cityid = 0;
             if (q.Count() > 0)
             {
                 foreach (var c in q)
@@ -182,5 +182,53 @@ namespace JobResume.Models
             db.JobResumeBasics.InsertOnSubmit(obj);
             db.SubmitChanges();
         }
+
+        public JobResumeBasic getBasicInfo(int userId)
+        {
+            DataClasses1DataContext db = new DataClasses1DataContext();
+            return (from x in db.JobResumeBasics
+                    where x.userId == userId
+                    select x).First();
+        }
+
+        public void updateBasicInfo(string fname, string lname, string mname, string imgpath, DateTime dob, string gender, string email, string ph1, string ph2, string address, string city, string country, string objective, string depofint, string desofint, DateTime joiningdate, string lastdegree, string lastinstitute, string lastperfor, string scndlastdegree, string scndlastinstitute, string scndlastperfor, string addqualification, int userId)
+        {
+            DataClasses1DataContext db = new DataClasses1DataContext();
+            var obj = (from x in db.JobResumeBasics
+                       where x.userId == userId
+                       select x).First();
+            int cityid = getCityId(city);
+            int countryid = getCountryId(country);
+            int lastdegreeid = getDegreeId(lastdegree);
+            int lastinstituteid = getInstituteId(lastinstitute);
+            int scndlastdegreeid = getDegreeId(scndlastdegree);
+            int scndlastinstituteid = getInstituteId(scndlastinstitute);
+
+            obj.mname = mname;
+            obj.image = imgpath;
+            obj.dob = dob;
+            obj.gender = gender;
+            obj.ph1 = ph1;
+            obj.ph2 = ph2;
+            obj.address = address;
+            obj.city = cityid;
+            obj.country = countryid;
+            obj.objective = objective;
+            obj.depofint = depofint;
+            obj.desofint = desofint;
+            obj.joiningdate = joiningdate;
+            obj.lastdegree = lastdegreeid;
+            obj.lastinstitute = lastinstituteid;
+            obj.perflastdegree = lastperfor;
+            obj.scndlastdegree = scndlastdegreeid;
+            obj.scndlastinstitute = scndlastinstituteid;
+            obj.perfscndlastdegree = scndlastperfor;
+            obj.addqualification = addqualification;
+            obj.userId = userId;
+
+            db.SubmitChanges();
+        }
+
     }
+
 }

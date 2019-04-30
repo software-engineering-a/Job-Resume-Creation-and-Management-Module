@@ -223,6 +223,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Resume\Create.cshtml" />
+    <Content Include="Views\Resume\Update.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

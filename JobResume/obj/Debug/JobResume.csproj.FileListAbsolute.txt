@@ -49,8 +49,8 @@ C:\Users\Imran kabir\source\repos\JobResume\JobResume\bin\System.Web.WebPages.Ra
 C:\Users\Imran kabir\source\repos\JobResume\JobResume\bin\Newtonsoft.Json.xml
 C:\Users\Imran kabir\source\repos\JobResume\JobResume\bin\Antlr3.Runtime.pdb
 C:\Users\Imran kabir\source\repos\JobResume\JobResume\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Imran kabir\source\repos\JobResume\JobResume\obj\Debug\JobResume.csprojAssemblyReference.cache
 C:\Users\Imran kabir\source\repos\JobResume\JobResume\obj\Debug\JobResume.csproj.CoreCompileInputs.cache
 C:\Users\Imran kabir\source\repos\JobResume\JobResume\obj\Debug\JobResume.csproj.CopyComplete
 C:\Users\Imran kabir\source\repos\JobResume\JobResume\obj\Debug\JobResume.dll
 C:\Users\Imran kabir\source\repos\JobResume\JobResume\obj\Debug\JobResume.pdb
+C:\Users\Imran kabir\source\repos\JobResume\JobResume\obj\Debug\JobResume.csprojAssemblyReference.cache

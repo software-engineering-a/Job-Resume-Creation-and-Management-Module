@@ -136,6 +136,7 @@
     <Compile Include="Models\ExpInfo.cs" />
     <Compile Include="Models\ExtraInfo.cs" />
     <Compile Include="Models\getAllLists.cs" />
+    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

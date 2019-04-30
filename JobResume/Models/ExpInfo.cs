@@ -7,6 +7,16 @@ namespace JobResume.Models
 {
     public class ExpInfo
     {
+        public bool isExpInfoFound(int userId)
+        {
+            DataClasses1DataContext db = new DataClasses1DataContext();
+            var q = from x in db.JobResumeExps
+                    where x.userId == userId
+                    select x;
+            if (q.Count() > 0)
+                return true;
+            return false;
+        }
         public void addExpInfo(string skills, int minsalary, string expsummary, string expyrs, string cemployer, string cdes, string expcorg, string rescjob, int userId, string pemployer, string pdes, string expporg, string resppjob, DateTime dol)
         {
             DataClasses1DataContext db = new DataClasses1DataContext();

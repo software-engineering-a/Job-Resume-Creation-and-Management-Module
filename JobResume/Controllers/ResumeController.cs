@@ -9,6 +9,7 @@ namespace JobResume.Controllers
 {
     public class ResumeController : Controller
     {
+        int uid = 2;
         // GET: Resume
         public ActionResult Create()
         {
@@ -17,6 +18,15 @@ namespace JobResume.Controllers
             ViewBag.Countaries = obj.getCountaries();
             ViewBag.Degrees = obj.getDegrees();
             ViewBag.Institutes = obj.getInstitutes();
+            BasicInfo b = new BasicInfo();
+            ExpInfo e1 = new ExpInfo();
+            ExtraInfo e2 = new ExtraInfo();
+            ViewBag.isBasicInfoExist = b.isBasicInfoFound(uid);
+            ViewBag.isExpInfoExist = e1.isExpInfoFound(uid);
+            ViewBag.isExtraInfoExist = e2.isExtraInfoFound(uid);
+
+            UserInfo u = new UserInfo();
+            ViewBag.UserInfo = u.getUserInfo(uid);
 
             return View();
         }
@@ -59,12 +69,21 @@ namespace JobResume.Controllers
             string addqualification = Request["addqualification"];
 
             BasicInfo obj = new BasicInfo();
-            obj.addBasicInfo(fname, lname, mname, image, dob, gender, email, ph1, ph2, address, city, country, objective, depofint, desofint, joiningdate, lastdegree, lastinstitute, lastperform, scndlastdegree, scndlastinstitute, scndlastperform, addqualification, 1);
+            obj.addBasicInfo(fname, lname, mname, image, dob, gender, email, ph1, ph2, address, city, country, objective, depofint, desofint, joiningdate, lastdegree, lastinstitute, lastperform, scndlastdegree, scndlastinstitute, scndlastperform, addqualification, uid);
             getAllLists obj1 = new getAllLists();
             ViewBag.Cities = obj1.getCities();
             ViewBag.Countaries = obj1.getCountaries();
             ViewBag.Degrees = obj1.getDegrees();
             ViewBag.Institutes = obj1.getInstitutes();
+            BasicInfo b = new BasicInfo();
+            ExpInfo e1 = new ExpInfo();
+            ExtraInfo e2 = new ExtraInfo();
+            ViewBag.isBasicInfoExist = b.isBasicInfoFound(uid);
+            ViewBag.isExpInfoExist = e1.isExpInfoFound(uid);
+            ViewBag.isExtraInfoExist = e2.isExtraInfoFound(uid);
+
+            UserInfo u = new UserInfo();
+            ViewBag.UserInfo = u.getUserInfo(uid);
             return View("Create");
         }
 
@@ -88,12 +107,21 @@ namespace JobResume.Controllers
             DateTime dolj = Convert.ToDateTime(date);
 
             ExpInfo obj = new ExpInfo();
-            obj.addExpInfo(skills, minsalary, expsum, expyrs, cemployer, cdes, expcorg, respcjob, 1, prevemp, prevdes, prevexporg, respprevjob, dolj);
+            obj.addExpInfo(skills, minsalary, expsum, expyrs, cemployer, cdes, expcorg, respcjob, uid, prevemp, prevdes, prevexporg, respprevjob, dolj);
             getAllLists obj2 = new getAllLists();
             ViewBag.Cities = obj2.getCities();
             ViewBag.Countaries = obj2.getCountaries();
             ViewBag.Degrees = obj2.getDegrees();
             ViewBag.Institutes = obj2.getInstitutes();
+            BasicInfo b = new BasicInfo();
+            ExpInfo e1 = new ExpInfo();
+            ExtraInfo e2 = new ExtraInfo();
+            ViewBag.isBasicInfoExist = b.isBasicInfoFound(uid);
+            ViewBag.isExpInfoExist = e1.isExpInfoFound(uid);
+            ViewBag.isExtraInfoExist = e2.isExtraInfoFound(uid);
+
+            UserInfo u = new UserInfo();
+            ViewBag.UserInfo = u.getUserInfo(uid);
             return View("Create");
         }
 
@@ -112,12 +140,21 @@ namespace JobResume.Controllers
             string refemail2 = Request["refemail2"];
 
             ExtraInfo obj = new ExtraInfo();
-            obj.addExtraInfo(extraact, othrint, refperson1, affperson1, phref1, refemail1, refperson2, affperson2, phref2, refemail2,1);
+            obj.addExtraInfo(extraact, othrint, refperson1, affperson1, phref1, refemail1, refperson2, affperson2, phref2, refemail2,uid);
             getAllLists obj3 = new getAllLists();
             ViewBag.Cities = obj3.getCities();
             ViewBag.Countaries = obj3.getCountaries();
             ViewBag.Degrees = obj3.getDegrees();
             ViewBag.Institutes = obj3.getInstitutes();
+            BasicInfo b = new BasicInfo();
+            ExpInfo e1 = new ExpInfo();
+            ExtraInfo e2 = new ExtraInfo();
+            ViewBag.isBasicInfoExist = b.isBasicInfoFound(uid);
+            ViewBag.isExpInfoExist = e1.isExpInfoFound(uid);
+            ViewBag.isExtraInfoExist = e2.isExtraInfoFound(uid);
+
+            UserInfo u = new UserInfo();
+            ViewBag.UserInfo = u.getUserInfo(uid);
             return View("Create");
         }
     }

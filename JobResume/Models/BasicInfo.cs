@@ -71,7 +71,6 @@ namespace JobResume.Models
             }
             return countryid;
         }
-
         int getDegreeId(string degree)
         {
             DataClasses1DataContext db = new DataClasses1DataContext();
@@ -104,7 +103,6 @@ namespace JobResume.Models
             }
             return degreeid;
         }
-
         int getInstituteId(string institute)
         {
             DataClasses1DataContext db = new DataClasses1DataContext();
@@ -137,7 +135,16 @@ namespace JobResume.Models
             }
             return instituteid;
         }
-
+        public bool isBasicInfoFound(int userId)
+        {
+            DataClasses1DataContext db = new DataClasses1DataContext();
+            var q = from x in db.JobResumeBasics
+                    where x.userId == userId
+                    select x;
+            if (q.Count() > 0)
+                return true;
+            return false;
+        }
         public void addBasicInfo(string fname, string lname, string mname, string imgpath, DateTime dob, string gender, string email, string ph1, string ph2, string address, string city, string country, string objective, string depofint, string desofint, DateTime joiningdate, string lastdegree, string lastinstitute, string lastperfor, string scndlastdegree, string scndlastinstitute, string scndlastperfor, string addqualification, int userId)
         {
             DataClasses1DataContext db = new DataClasses1DataContext();

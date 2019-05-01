@@ -102,11 +102,6 @@
       <Association Name="User_PreviousHistory" Member="User" ThisKey="userid" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.[Table]" Member="Tables">
-    <Type Name="Table">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.JobResumeExtra" Member="JobResumeExtras">
     <Type Name="JobResumeExtra">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

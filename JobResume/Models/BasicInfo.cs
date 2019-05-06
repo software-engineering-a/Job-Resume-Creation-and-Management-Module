@@ -7,7 +7,7 @@ namespace JobResume.Models
 {
     public class BasicInfo
     {
-        int getCityId(string city)
+        public int getCityId(string city)
         {
             DataClasses1DataContext db = new DataClasses1DataContext();
 
@@ -39,7 +39,7 @@ namespace JobResume.Models
             }
             return cityid;
         }
-        int getCountryId(string country)
+        public int getCountryId(string country)
         {
             DataClasses1DataContext db = new DataClasses1DataContext();
 
@@ -71,7 +71,7 @@ namespace JobResume.Models
             }
             return countryid;
         }
-        int getDegreeId(string degree)
+        public int getDegreeId(string degree)
         {
             DataClasses1DataContext db = new DataClasses1DataContext();
 
@@ -103,7 +103,7 @@ namespace JobResume.Models
             }
             return degreeid;
         }
-        int getInstituteId(string institute)
+        public int getInstituteId(string institute)
         {
             DataClasses1DataContext db = new DataClasses1DataContext();
 
@@ -145,40 +145,9 @@ namespace JobResume.Models
                 return true;
             return false;
         }
-        public void addBasicInfo(string fname, string lname, string mname, string imgpath, DateTime dob, string gender, string email, string ph1, string ph2, string address, string city, string country, string objective, string depofint, string desofint, DateTime joiningdate, string lastdegree, string lastinstitute, string lastperfor, string scndlastdegree, string scndlastinstitute, string scndlastperfor, string addqualification, int userId)
+        public void addBasicInfo(JobResumeBasic obj)
         {
             DataClasses1DataContext db = new DataClasses1DataContext();
-            JobResumeBasic obj = new JobResumeBasic();
-
-            int cityid = getCityId(city);
-            int countryid = getCountryId(country);
-            int lastdegreeid = getDegreeId(lastdegree);
-            int lastinstituteid = getInstituteId(lastinstitute);
-            int scndlastdegreeid = getDegreeId(scndlastdegree);
-            int scndlastinstituteid = getInstituteId(scndlastinstitute);
-
-            obj.mname = mname;
-            obj.image = imgpath;
-            obj.dob = dob;
-            obj.gender = gender;
-            obj.ph1 = ph1;
-            obj.ph2 = ph2;
-            obj.address = address;
-            obj.city = cityid;
-            obj.country = countryid;
-            obj.objective = objective;
-            obj.depofint = depofint;
-            obj.desofint = desofint;
-            obj.joiningdate = joiningdate;
-            obj.lastdegree = lastdegreeid;
-            obj.lastinstitute = lastinstituteid;
-            obj.perflastdegree = lastperfor;
-            obj.scndlastdegree = scndlastdegreeid;
-            obj.scndlastinstitute = scndlastinstituteid;
-            obj.perfscndlastdegree = scndlastperfor;
-            obj.addqualification = addqualification;
-            obj.userId = userId;
-
             db.JobResumeBasics.InsertOnSubmit(obj);
             db.SubmitChanges();
         }
@@ -191,41 +160,13 @@ namespace JobResume.Models
                     select x).First();
         }
 
-        public void updateBasicInfo(string fname, string lname, string mname, string imgpath, DateTime dob, string gender, string email, string ph1, string ph2, string address, string city, string country, string objective, string depofint, string desofint, DateTime joiningdate, string lastdegree, string lastinstitute, string lastperfor, string scndlastdegree, string scndlastinstitute, string scndlastperfor, string addqualification, int userId)
+        public void updateBasicInfo(JobResumeBasic br)
         {
             DataClasses1DataContext db = new DataClasses1DataContext();
             var obj = (from x in db.JobResumeBasics
-                       where x.userId == userId
+                       where x.userId == br.userId
                        select x).First();
-            int cityid = getCityId(city);
-            int countryid = getCountryId(country);
-            int lastdegreeid = getDegreeId(lastdegree);
-            int lastinstituteid = getInstituteId(lastinstitute);
-            int scndlastdegreeid = getDegreeId(scndlastdegree);
-            int scndlastinstituteid = getInstituteId(scndlastinstitute);
-
-            obj.mname = mname;
-            obj.image = imgpath;
-            obj.dob = dob;
-            obj.gender = gender;
-            obj.ph1 = ph1;
-            obj.ph2 = ph2;
-            obj.address = address;
-            obj.city = cityid;
-            obj.country = countryid;
-            obj.objective = objective;
-            obj.depofint = depofint;
-            obj.desofint = desofint;
-            obj.joiningdate = joiningdate;
-            obj.lastdegree = lastdegreeid;
-            obj.lastinstitute = lastinstituteid;
-            obj.perflastdegree = lastperfor;
-            obj.scndlastdegree = scndlastdegreeid;
-            obj.scndlastinstitute = scndlastinstituteid;
-            obj.perfscndlastdegree = scndlastperfor;
-            obj.addqualification = addqualification;
-            obj.userId = userId;
-
+            obj = br;
             db.SubmitChanges();
         }
 

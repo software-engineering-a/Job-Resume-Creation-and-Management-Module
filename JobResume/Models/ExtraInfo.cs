@@ -17,21 +17,9 @@ namespace JobResume.Models
                 return true;
             return false;
         }
-        public void addExtraInfo(string extraactivities, string otherinterests, string namep1, string affp1, string php1, string emailp1, string namep2, string affp2, string php2, string emailp2, int userId)
+        public void addExtraInfo(JobResumeExtra obj)
         {
             DataClasses1DataContext db = new DataClasses1DataContext();
-            JobResumeExtra obj = new JobResumeExtra();
-            obj.extraactivities = extraactivities;
-            obj.otherinterests = otherinterests;
-            obj.namep1 = namep1;
-            obj.namep2 = namep2;
-            obj.affp1 = affp1;
-            obj.affp2 = affp2;
-            obj.php1 = php1;
-            obj.php2 = php2;
-            obj.emailp1 = emailp1;
-            obj.emailp2 = emailp2;
-            obj.userId = userId;
             db.JobResumeExtras.InsertOnSubmit(obj);
             db.SubmitChanges();
         }
@@ -42,23 +30,13 @@ namespace JobResume.Models
                     where x.userId == userId
                     select x).First();
         }
-        public void updateExtraInfo(string extraactivities, string otherinterests, string namep1, string affp1, string php1, string emailp1, string namep2, string affp2, string php2, string emailp2, int userId)
+        public void updateExtraInfo(JobResumeExtra er)
         {
             DataClasses1DataContext db = new DataClasses1DataContext();
             var obj = (from x in db.JobResumeExtras
-                       where x.userId == userId
+                       where x.userId == er.userId
                        select x).First();
-            obj.extraactivities = extraactivities;
-            obj.otherinterests = otherinterests;
-            obj.namep1 = namep1;
-            obj.namep2 = namep2;
-            obj.affp1 = affp1;
-            obj.affp2 = affp2;
-            obj.php1 = php1;
-            obj.php2 = php2;
-            obj.emailp1 = emailp1;
-            obj.emailp2 = emailp2;
-            obj.userId = userId;
+            obj = er;
             db.SubmitChanges();
         }
     }

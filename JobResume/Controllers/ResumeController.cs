@@ -62,43 +62,44 @@ namespace JobResume.Controllers
         [HttpPost]
         public ActionResult CreateBasicinfo()
         {
-            string fname = Request["fname"];
-            string mname = Request["mname"];
-            string lname = Request["lname"];
-
-            string image = Request["image"];
-            string date = Request["dob"];
-            DateTime dob = Convert.ToDateTime(date);
-            string gender = Request["gender"];
-
-            string email = Request["email"];
-            string ph1 = Request["ph1"];
-            string ph2 = Request["ph2"];
-
-            string address = Request["address"];
-            string city = Request["city"];
-            string country = Request["country"];
-
-            string objective = Request["objective"];
-
-            string depofint = Request["depoi"];
-            string desofint = Request["desoi"];
-
-            date = Request["joiningdate"];
-            DateTime joiningdate = Convert.ToDateTime(date);
-
-            string lastdegree = Request["lastdegree"];
-            string lastinstitute = Request["lastinstitute"];
-            string lastperform = Request["lastperform"];
-
-            string scndlastdegree = Request["scndlastdegree"];
-            string scndlastinstitute = Request["scndlastinstitute"];
-            string scndlastperform = Request["scndlastperform"];
-
-            string addqualification = Request["addqualification"];
-
+            JobResumeBasic br = new JobResumeBasic();
             BasicInfo obj = new BasicInfo();
-            obj.addBasicInfo(fname, lname, mname, image, dob, gender, email, ph1, ph2, address, city, country, objective, depofint, desofint, joiningdate, lastdegree, lastinstitute, lastperform, scndlastdegree, scndlastinstitute, scndlastperform, addqualification, uid);
+
+            string fname = Request["fname"];
+            string lname = Request["lname"];
+            string email = Request["email"];
+
+            br.mname = Request["mname"];
+            br.image = Request["image"];
+            string date = Request["dob"];
+            br.dob = Convert.ToDateTime(date);
+            br.gender = Request["gender"];
+            br.ph1 = Request["ph1"];
+            br.ph2 = Request["ph2"];
+            br.address = Request["address"];
+            string city = Request["city"];
+            br.city = obj.getCityId(city);
+            string country = Request["country"];
+            br.country = obj.getCountryId(country);
+            br.objective = Request["objective"];
+            br.depofint = Request["depoi"];
+            br.desofint = Request["desoi"];
+            date = Request["joiningdate"];
+            br.joiningdate = Convert.ToDateTime(date);
+            string lastdegree = Request["lastdegree"];
+            br.lastdegree = obj.getDegreeId(lastdegree);
+            string lastinstitute = Request["lastinstitute"];
+            br.lastinstitute = obj.getInstituteId(lastinstitute);
+            br.perflastdegree = Request["lastperform"];
+            string scndlastdegree = Request["scndlastdegree"];
+            br.scndlastdegree = obj.getDegreeId(scndlastdegree);
+            string scndlastinstitute = Request["scndlastinstitute"];
+            br.scndlastinstitute = obj.getInstituteId(scndlastinstitute);
+            br.perfscndlastdegree = Request["scndlastperform"];
+
+            br.addqualification = Request["addqualification"];
+            br.userId = uid;
+            obj.addBasicInfo(br);
             getAllLists obj1 = new getAllLists();
             ViewBag.Cities = obj1.getCities();
             ViewBag.Countaries = obj1.getCountaries();
@@ -119,24 +120,28 @@ namespace JobResume.Controllers
         [HttpPost]
         public ActionResult CreateExpinfo()
         {
-            string skills = Request["skills"];
-            int minsalary = Convert.ToInt32(Request["minsalary"]);
-            string expsum = Request["expsum"];
-            string expyrs = Request["expyrs"];
-            string cemployer = Request["currentemp"];
-            string cdes = Request["currentdes"];
-            string expcorg = Request["exporg"];
-            string respcjob = Request["respcjob"];
-
-            string prevemp = Request["prevemp"];
-            string prevdes = Request["prevdes"];
-            string prevexporg = Request["prevexporg"];
-            string respprevjob = Request["respprevjob"];
+            JobResumeExp er = new JobResumeExp();
+            er.skills = Request["skills"];
+            er.minsalary = Convert.ToInt32(Request["minsalary"]);
+            er.expsummary = Request["expsum"];
+            er.expyrs = Request["expyrs"];
+            er.cemployer = Request["currentemp"];
+            er.cdes = Request["currentdes"];
+            er.expcorg = Request["exporg"];
+            er.rescjob = Request["respcjob"];
+            er.userId = uid;
+            PreviousHistory ph = new PreviousHistory();
+            
+            ph.pemployer = Request["prevemp"];
+            ph.pdes = Request["prevdes"];
+            ph.expporg = Request["prevexporg"];
+            ph.resppjob = Request["respprevjob"];
             string date = Request["dolj"];
-            DateTime dolj = Convert.ToDateTime(date);
+            ph.dateofleaving = Convert.ToDateTime(date);
+            ph.userid = uid;
 
             ExpInfo obj = new ExpInfo();
-            obj.addExpInfo(skills, minsalary, expsum, expyrs, cemployer, cdes, expcorg, respcjob, uid, prevemp, prevdes, prevexporg, respprevjob, dolj);
+            obj.addExpInfo(er, ph);
             getAllLists obj2 = new getAllLists();
             ViewBag.Cities = obj2.getCities();
             ViewBag.Countaries = obj2.getCountaries();
@@ -157,19 +162,20 @@ namespace JobResume.Controllers
         [HttpPost]
         public ActionResult CreateExtrainfo()
         {
-            string extraact = Request["extraact"];
-            string othrint = Request["othrint"];
-            string refperson1 = Request["refperson1"];
-            string affperson1 = Request["affperson1"];
-            string phref1 = Request["phref1"];
-            string refemail1 = Request["refemail1"];
-            string refperson2 = Request["refperson2"];
-            string affperson2 = Request["affperson2"];
-            string phref2 = Request["phref2"];
-            string refemail2 = Request["refemail2"];
-
+            JobResumeExtra er = new JobResumeExtra();
+            er.extraactivities = Request["extraact"];
+            er.otherinterests = Request["othrint"];
+            er.namep1 = Request["refperson1"];
+            er.affp1 = Request["affperson1"];
+            er.php1 = Request["phref1"];
+            er.emailp1 = Request["refemail1"];
+            er.namep2 = Request["refperson2"];
+            er.affp2 = Request["affperson2"];
+            er.php2 = Request["phref2"];
+            er.emailp2 = Request["refemail2"];
+            er.userId = uid;
             ExtraInfo obj = new ExtraInfo();
-            obj.addExtraInfo(extraact, othrint, refperson1, affperson1, phref1, refemail1, refperson2, affperson2, phref2, refemail2,uid);
+            obj.addExtraInfo(er);
             getAllLists obj3 = new getAllLists();
             ViewBag.Cities = obj3.getCities();
             ViewBag.Countaries = obj3.getCountaries();
@@ -190,43 +196,44 @@ namespace JobResume.Controllers
         [HttpPost]
         public ActionResult UpdateBasicinfo()
         {
-            string fname = Request["fname"];
-            string mname = Request["mname"];
-            string lname = Request["lname"];
-
-            string image = Request["image"];
-            string date = Request["dob"];
-            DateTime dob = Convert.ToDateTime(date);
-            string gender = Request["gender"];
-
-            string email = Request["email"];
-            string ph1 = Request["ph1"];
-            string ph2 = Request["ph2"];
-
-            string address = Request["address"];
-            string city = Request["city"];
-            string country = Request["country"];
-
-            string objective = Request["objective"];
-
-            string depofint = Request["depoi"];
-            string desofint = Request["desoi"];
-
-            date = Request["joiningdate"];
-            DateTime joiningdate = Convert.ToDateTime(date);
-
-            string lastdegree = Request["lastdegree"];
-            string lastinstitute = Request["lastinstitute"];
-            string lastperform = Request["lastperform"];
-
-            string scndlastdegree = Request["scndlastdegree"];
-            string scndlastinstitute = Request["scndlastinstitute"];
-            string scndlastperform = Request["scndlastperform"];
-
-            string addqualification = Request["addqualification"];
-
+            JobResumeBasic br = new JobResumeBasic();
             BasicInfo obj = new BasicInfo();
-            obj.updateBasicInfo(fname, lname, mname, image, dob, gender, email, ph1, ph2, address, city, country, objective, depofint, desofint, joiningdate, lastdegree, lastinstitute, lastperform, scndlastdegree, scndlastinstitute, scndlastperform, addqualification, uid);
+
+            string fname = Request["fname"];
+            string lname = Request["lname"];
+            string email = Request["email"];
+
+            br.mname = Request["mname"];
+            br.image = Request["image"];
+            string date = Request["dob"];
+            br.dob = Convert.ToDateTime(date);
+            br.gender = Request["gender"];
+            br.ph1 = Request["ph1"];
+            br.ph2 = Request["ph2"];
+            br.address = Request["address"];
+            string city = Request["city"];
+            br.city = obj.getCityId(city);
+            string country = Request["country"];
+            br.country = obj.getCountryId(country);
+            br.objective = Request["objective"];
+            br.depofint = Request["depoi"];
+            br.desofint = Request["desoi"];
+            date = Request["joiningdate"];
+            br.joiningdate = Convert.ToDateTime(date);
+            string lastdegree = Request["lastdegree"];
+            br.lastdegree = obj.getDegreeId(lastdegree);
+            string lastinstitute = Request["lastinstitute"];
+            br.lastinstitute = obj.getInstituteId(lastinstitute);
+            br.perflastdegree = Request["lastperform"];
+            string scndlastdegree = Request["scndlastdegree"];
+            br.scndlastdegree = obj.getDegreeId(scndlastdegree);
+            string scndlastinstitute = Request["scndlastinstitute"];
+            br.scndlastinstitute = obj.getInstituteId(scndlastinstitute);
+            br.perfscndlastdegree = Request["scndlastperform"];
+
+            br.addqualification = Request["addqualification"];
+            br.userId = uid;
+            obj.updateBasicInfo(br);
             getAllLists obj1 = new getAllLists();
             ViewBag.Cities = obj1.getCities();
             ViewBag.Countaries = obj1.getCountaries();
@@ -257,24 +264,28 @@ namespace JobResume.Controllers
         [HttpPost]
         public ActionResult UpdateExpinfo()
         {
-            string skills = Request["skills"];
-            int minsalary = Convert.ToInt32(Request["minsalary"]);
-            string expsum = Request["expsum"];
-            string expyrs = Request["expyrs"];
-            string cemployer = Request["currentemp"];
-            string cdes = Request["currentdes"];
-            string expcorg = Request["exporg"];
-            string respcjob = Request["respcjob"];
+            JobResumeExp er = new JobResumeExp();
+            er.skills = Request["skills"];
+            er.minsalary = Convert.ToInt32(Request["minsalary"]);
+            er.expsummary = Request["expsum"];
+            er.expyrs = Request["expyrs"];
+            er.cemployer = Request["currentemp"];
+            er.cdes = Request["currentdes"];
+            er.expcorg = Request["exporg"];
+            er.rescjob = Request["respcjob"];
+            er.userId = uid;
+            PreviousHistory ph = new PreviousHistory();
 
-            string prevemp = Request["prevemp"];
-            string prevdes = Request["prevdes"];
-            string prevexporg = Request["prevexporg"];
-            string respprevjob = Request["respprevjob"];
+            ph.pemployer = Request["prevemp"];
+            ph.pdes = Request["prevdes"];
+            ph.expporg = Request["prevexporg"];
+            ph.resppjob = Request["respprevjob"];
             string date = Request["dolj"];
-            DateTime dolj = Convert.ToDateTime(date);
+            ph.dateofleaving = Convert.ToDateTime(date);
+            ph.userid = uid;
 
             ExpInfo obj = new ExpInfo();
-            obj.updateExpInfo(skills, minsalary, expsum, expyrs, cemployer, cdes, expcorg, respcjob, uid, prevemp, prevdes, prevexporg, respprevjob, dolj);
+            obj.updateExpInfo(er, ph);
             getAllLists obj2 = new getAllLists();
             ViewBag.Cities = obj2.getCities();
             ViewBag.Countaries = obj2.getCountaries();
@@ -305,19 +316,20 @@ namespace JobResume.Controllers
         [HttpPost]
         public ActionResult UpdateExtrainfo()
         {
-            string extraact = Request["extraact"];
-            string othrint = Request["othrint"];
-            string refperson1 = Request["refperson1"];
-            string affperson1 = Request["affperson1"];
-            string phref1 = Request["phref1"];
-            string refemail1 = Request["refemail1"];
-            string refperson2 = Request["refperson2"];
-            string affperson2 = Request["affperson2"];
-            string phref2 = Request["phref2"];
-            string refemail2 = Request["refemail2"];
-
+            JobResumeExtra er = new JobResumeExtra();
+            er.extraactivities = Request["extraact"];
+            er.otherinterests = Request["othrint"];
+            er.namep1 = Request["refperson1"];
+            er.affp1 = Request["affperson1"];
+            er.php1 = Request["phref1"];
+            er.emailp1 = Request["refemail1"];
+            er.namep2 = Request["refperson2"];
+            er.affp2 = Request["affperson2"];
+            er.php2 = Request["phref2"];
+            er.emailp2 = Request["refemail2"];
+            er.userId = uid;
             ExtraInfo obj = new ExtraInfo();
-            obj.updateExtraInfo(extraact, othrint, refperson1, affperson1, phref1, refemail1, refperson2, affperson2, phref2, refemail2, uid);
+            obj.updateExtraInfo(er);
             getAllLists obj3 = new getAllLists();
             ViewBag.Cities = obj3.getCities();
             ViewBag.Countaries = obj3.getCountaries();
